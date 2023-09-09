@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate  #
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from rest_framework.authtoken.models import Token
-#from .models import Profile
+from .models import Profile
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -53,5 +53,7 @@ class LoginSerializer(serializers.Serializer):
             return token
         raise serializers.ValidationError(
             {"error": "Unable to log in with provided credentials."})
-
-
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Profile
+        field=("nickname","position","subjects","image")
