@@ -27,7 +27,14 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+import random
+import string
 
+def generate_secret_key():
+    characters = string.ascii_letters + string.digits + '!@#$%^&*(-_=+)'
+    return ''.join(random.SystemRandom().choice(characters) for _ in range(50))
+
+SECRET_KEY = generate_secret_key()
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -38,7 +45,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "users",
     'rest_framework.authtoken',
-    "corsheaders"
+    "corsheaders",
+    "posts"
 ]
 
 REST_FRAMEWORK = {
